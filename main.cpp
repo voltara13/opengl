@@ -84,7 +84,7 @@ void Display(void)
 	glColor3f(0, 1, 0);
 	glVertex2f(-2, -2);
 	glVertex2f(5, 3);
-	glEnd(); //Зелёная толстая линия
+	glEnd(); //Зеленая толстая линия
 
 
 	glViewport(0, 0, Width / 2, Height / 2); //Третья четверть
@@ -95,7 +95,7 @@ void Display(void)
 	glColor3f(1, 1, 0);
 	glVertex2f(-3, 4);
 	glEnd();
-	glDisable(GL_POINT_SMOOTH); //Жёлтая круглая точка
+	glDisable(GL_POINT_SMOOTH); //Желтая круглая точка
 
 	glEnable(GL_POINT_SMOOTH);
 	glBegin(GL_POINTS);
@@ -119,7 +119,7 @@ void Display(void)
 	glEnd(); //Красная квадратная большая точка
 
 
-	glViewport(Width / 2, 0, Width / 2, Height / 2); //Четвёртая четверть
+	glViewport(Width / 2, 0, Width / 2, Height / 2); //Четвертая четверть
 
 	glBegin(GL_LINE_STRIP);
 	glColor3f(1, 1, 1);
