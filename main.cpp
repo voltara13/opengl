@@ -71,16 +71,11 @@ void moveObject(int x, int y)
 }
 
 
-void init(void)
+void reshape(int w, int h)
 {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glShadeModel(GL_FLAT);
 	glColor3f(1.0, 1.0, 1.0);
-}
-
-
-void reshape(int w, int h)
-{
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -95,8 +90,7 @@ int main(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(500, 500);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow(argv[0]);
-	init();
+	glutCreateWindow("lw3");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(processNormalKeys);
