@@ -68,7 +68,7 @@ void Display(void)
 	glColor3f(1, 1, 0);
 	glVertex2f(-5, -1);
 	glVertex2f(4, 5);
-	glEnd(); //Жёлтая линия
+	glEnd(); //Желтая линия
 
 	glEnable(GL_LINE_STIPPLE);
 	glLineStipple(1, 0x1C47);
