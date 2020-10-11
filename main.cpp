@@ -1,4 +1,4 @@
-#include <windows.h>
+п»ї#include <windows.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
 
@@ -23,7 +23,7 @@ void Display(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 
-	glViewport(w / 2, h / 2, w / 2, h / 2); //Первая четверть
+	glViewport(w / 2, h / 2, w / 2, h / 2); //РџРµСЂРІР°СЏ С‡РµС‚РІРµСЂС‚СЊ
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -43,7 +43,7 @@ void Display(void)
 		glVertex2f(-3, -1 + i * 2);
 		glVertex2f(-3, -3 + i * 2);
 		glEnd();
-	} //Красный прямоугольник
+	} //РљСЂР°СЃРЅС‹Р№ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glBegin(GL_POLYGON);
@@ -59,16 +59,16 @@ void Display(void)
 	glVertex2f(2.2, 3);
 	glColor3f(0, 0, 1);
 	glVertex2f(1.5, 4);
-	glEnd(); //Веер треугольников
+	glEnd(); //Р’РµРµСЂ С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ
 
 
-	glViewport(0, Height / 2, Width / 2, Height / 2); //Вторая четверть
+	glViewport(0, Height / 2, Width / 2, Height / 2); //Р’С‚РѕСЂР°СЏ С‡РµС‚РІРµСЂС‚СЊ
 
 	glBegin(GL_LINES);
 	glColor3f(1, 1, 0);
 	glVertex2f(-5, -1);
 	glVertex2f(4, 5);
-	glEnd(); //Желтая линия
+	glEnd(); //Р–РµР»С‚Р°СЏ Р»РёРЅРёСЏ
 
 	glEnable(GL_LINE_STIPPLE);
 	glLineStipple(1, 0x1C47);
@@ -77,17 +77,17 @@ void Display(void)
 	glVertex2f(-4, 4);
 	glVertex2f(5, -3);
 	glEnd();
-	glDisable(GL_LINE_STIPPLE); //Красная штрих-пунктирная линия
+	glDisable(GL_LINE_STIPPLE); //РљСЂР°СЃРЅР°СЏ С€С‚СЂРёС…-РїСѓРЅРєС‚РёСЂРЅР°СЏ Р»РёРЅРёСЏ
 
 	glLineWidth(2.5);
 	glBegin(GL_LINES);
 	glColor3f(0, 1, 0);
 	glVertex2f(-2, -2);
 	glVertex2f(5, 3);
-	glEnd(); //Зеленая толстая линия
+	glEnd(); //Р—РµР»РµРЅР°СЏ С‚РѕР»СЃС‚Р°СЏ Р»РёРЅРёСЏ
 
 
-	glViewport(0, 0, Width / 2, Height / 2); //Третья четверть
+	glViewport(0, 0, Width / 2, Height / 2); //РўСЂРµС‚СЊСЏ С‡РµС‚РІРµСЂС‚СЊ
 
 	glPointSize(5);
 	glEnable(GL_POINT_SMOOTH);
@@ -95,14 +95,14 @@ void Display(void)
 	glColor3f(1, 1, 0);
 	glVertex2f(-3, 4);
 	glEnd();
-	glDisable(GL_POINT_SMOOTH); //Желтая круглая точка
+	glDisable(GL_POINT_SMOOTH); //Р–РµР»С‚Р°СЏ РєСЂСѓРіР»Р°СЏ С‚РѕС‡РєР°
 
 	glEnable(GL_POINT_SMOOTH);
 	glBegin(GL_POINTS);
 	glColor3f(0, 1, 0);
 	glVertex2f(3, -4);
 	glEnd();
-	glDisable(GL_POINT_SMOOTH); //Зелёная точка
+	glDisable(GL_POINT_SMOOTH); //Р—РµР»С‘РЅР°СЏ С‚РѕС‡РєР°
 
 	glPointSize(15);
 	glEnable(GL_POINT_SMOOTH);
@@ -110,16 +110,16 @@ void Display(void)
 	glColor3f(0, 0, 1);
 	glVertex2f(-5, -5);
 	glEnd();
-	glDisable(GL_POINT_SMOOTH); //Синяя круглая большая точка
+	glDisable(GL_POINT_SMOOTH); //РЎРёРЅСЏСЏ РєСЂСѓРіР»Р°СЏ Р±РѕР»СЊС€Р°СЏ С‚РѕС‡РєР°
 
 	glPointSize(15);
 	glBegin(GL_POINTS);
 	glColor3f(1, 0, 0);
 	glVertex2f(3, 3);
-	glEnd(); //Красная квадратная большая точка
+	glEnd(); //РљСЂР°СЃРЅР°СЏ РєРІР°РґСЂР°С‚РЅР°СЏ Р±РѕР»СЊС€Р°СЏ С‚РѕС‡РєР°
 
 
-	glViewport(Width / 2, 0, Width / 2, Height / 2); //Четвертая четверть
+	glViewport(Width / 2, 0, Width / 2, Height / 2); //Р§РµС‚РІРµСЂС‚Р°СЏ С‡РµС‚РІРµСЂС‚СЊ
 
 	glBegin(GL_LINE_STRIP);
 	glColor3f(1, 1, 1);
@@ -129,14 +129,14 @@ void Display(void)
 	glVertex2f(-3, 0.5);
 	glVertex2f(-3, 5);
 	glVertex2f(-5, 3.5);
-	glEnd(); //Ломаная линия
+	glEnd(); //Р›РѕРјР°РЅР°СЏ Р»РёРЅРёСЏ
 
 	glBegin(GL_TRIANGLES);
 	glColor3f(0, 0, 1);
 	glVertex2f(2, 3);
 	glVertex2f(5, 2);
 	glVertex2f(4.5, 5);
-	glEnd(); //Синий треугольник
+	glEnd(); //РЎРёРЅРёР№ С‚СЂРµСѓРіРѕР»СЊРЅРёРє
 
 	glBegin(GL_POLYGON);
 	glColor3f(1, 0.5, 0);
@@ -144,7 +144,7 @@ void Display(void)
 	glVertex2f(1, -1);
 	glVertex2f(4, -4);
 	glVertex2f(0, -5);
-	glEnd(); //Оранжевый многогранник
+	glEnd(); //РћСЂР°РЅР¶РµРІС‹Р№ РјРЅРѕРіРѕРіСЂР°РЅРЅРёРє
 
 
 	float point[] = {
@@ -153,7 +153,7 @@ void Display(void)
 		0.0f, float(h) / 2.0f, float(w) / 2.0f, float(h) / 2.0f,
 		0.0f, 0.0f, float(w) / 2.0f, float(h) / 2.0f,
 		float(w) / 2.0f, 0.0f, float(w) / 2.0f, float(h) / 2.0f
-	}; //Массив точек для разметки
+	}; //РњР°СЃСЃРёРІ С‚РѕС‡РµРє РґР»СЏ СЂР°Р·РјРµС‚РєРё
 
 	glColor3f(1, 1, 1);
 	for (int i = 0; i <= 16; i += 4)
@@ -167,9 +167,9 @@ void Display(void)
 		glVertex2f(0, -6);
 		glVertex2f(0, 6);
 		glEnd();
-	} //Разметка
+	} //Р Р°Р·РјРµС‚РєР°
 
-	Output("K and S"); //Печать текста
+	Output("K and S"); //РџРµС‡Р°С‚СЊ С‚РµРєСЃС‚Р°
 
 
 	glFinish();
