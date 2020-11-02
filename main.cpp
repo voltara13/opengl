@@ -1,101 +1,116 @@
-﻿#include <GL/glut.h>
-#include <cstdlib>
-#include <ctime>
+#include <iostream>
+#include <windows.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
 
-static GLfloat spin = 0.0;
-static int ax = 0, ay = 0;
 
-void spinDisplay(void)
+GLint Width = 400, Height = 400;
+
+GLfloat vertices[][3] = {
+	{-1.0, -1.0, -1.0},
+	{1.0, -1.0, -1.0},
+	{1.0, 1.0, -1.0},
+	{-1.0, 1.0, -1.0},
+	{-1.0, -1.0, 1.0},
+	{1.0, -1.0, 1.0},
+	{1.0, 1.0, 1.0},
+	{-1.0, 1.0, 1.0}
+};
+
+GLfloat colors[][3] = {
+	{1.0, 0.0, 0.0},
+	{1.0, 1.0, 0.0},
+	{0.0, 1.0, 0.0},
+	{0.0, 0.0, 1.0},
+	{1.0, 0.0, 1.0},
+	{1.0, 1.0, 1.0}
+};
+
+void polygon(int a, int b, int c, int d, int color)
 {
-	spin = spin + 5;
-	if (spin > 360.0)
-		spin = spin - 360.0;
-	glutPostRedisplay();
-}
-
-
-void display(void)
-{
-	glClear(GL_COLOR_BUFFER_BIT);
-	glPushMatrix();
-	glTranslatef(ax, ay, 0);
-	glRotatef(spin, 0.0, 0.0, 1.0);
+	glColor3fv(colors[color]);
 	glBegin(GL_POLYGON);
-	glVertex2f(-1.0, -1.0);
-	glVertex2f(1.0, -1.0);
-	glVertex2f(1.0, 1.0);
-	glVertex2f(-1.0, 1.0);
+	glVertex3fv(vertices[a]);
+	glVertex3fv(vertices[b]);
+	glVertex3fv(vertices[c]);
+	glVertex3fv(vertices[d]);
 	glEnd();
-	glPopMatrix();
-	glutSwapBuffers();
 }
 
 
-void processNormalKeys(unsigned char key, int x, int y)
+void colorcube()
 {
-	switch (key)
-	{
-	case 27:
-		exit(0);
-	case 88:
-		glutIdleFunc(display);
-		break;
-	case 120:
-		glutIdleFunc(spinDisplay);
-		break;
-	}
+	polygon(0, 3, 2, 1, 0);
+	polygon(2, 3, 7, 6, 1);
+	polygon(0, 4, 7, 3, 2);
+	polygon(1, 2, 6, 5, 3);
+	polygon(4, 5, 6, 7, 4);
+	polygon(0, 1, 5, 4, 5);
 }
 
 
-void processMouseKeys(int key, int state, int x, int y)
-{
-	switch (key)
-	{
-	case GLUT_RIGHT_BUTTON:
-		glutIdleFunc(display);
-		break;
-	case GLUT_LEFT_BUTTON:
-		glutIdleFunc(spinDisplay);
-		break;
-	}
-}
-
-
-void moveObject(int x, int y)
-{
-	srand(time(0));
-	ax = (x - 250) / 5;
-	ay = (250 - y) / 5;
-	glColor3f(rand() / (float(RAND_MAX) + 1), rand() / (float(RAND_MAX) + 1), rand() / (float(RAND_MAX) + 1));
-	glutPostRedisplay();
-}
-
-
-void reshape(int w, int h)
+void Display(void)
 {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
-	glShadeModel(GL_FLAT);
-	glColor3f(1.0, 1.0, 1.0);
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-	glMatrixMode(GL_MODELVIEW);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(-50.0, 50.0, -50.0, 50.0);
+
+	glOrtho(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
+
+	glPushMatrix();
+	glViewport(0, Height / 2, Width / 2, Height / 2);
+	colorcube();
+	glPopMatrix();
+
+	glPushMatrix();
+	glViewport(Width / 2, Height / 2, Width / 2, Height / 2);
+	glRotatef(15, 1, 0, 0);
+	glRotatef(-15, 0, 1, 0);
+	colorcube();
+	glPopMatrix();
+
+	glPushMatrix();
+	glViewport(0, 0, Width / 2, Height / 2);
+	glRotatef(30, 1, 0, 0);
+	glRotatef(-30, 0, 1, 0);
+	colorcube();
+	glPopMatrix();
+
+	glPushMatrix();
+	glViewport(Width / 2, 0, Width / 2, Height / 2);
+	gluPerspective(30, 1, -0.1, 2);
+	gluLookAt(3, 2, 2, 0, 0, 0, 0, 1, 0);
+	colorcube();
+	glPopMatrix();
+
+
+	glFinish();
 }
 
 
-int main(int argc, char **argv)
+void Reshape(GLint w, GLint h)
 {
+	Width = w;
+	Height = h;
+	glViewport(0, 0, w, h);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_DEPTH_TEST);
+	float ambient[] = { 0.7, 0.7, 0.7, 1 };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
+}
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(500, 500);
-	glutInitWindowPosition(100, 100);
-	glutCreateWindow("lw3");
-	glutDisplayFunc(display);
-	glutReshapeFunc(reshape);
-	glutKeyboardFunc(processNormalKeys);
-	glutMouseFunc(processMouseKeys);
-	glutMotionFunc(moveObject);
+
+int main(int argc, char *argv[])
+{
+	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
+	glutInitWindowSize(Width, Height);
+	glutCreateWindow("lw4");
+	glutReshapeFunc(Reshape);
+	glutDisplayFunc(Display);
 	glutMainLoop();
 	return 0;
 }
