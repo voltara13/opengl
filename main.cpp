@@ -3,7 +3,6 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
-
 GLint Width = 400, Height = 400;
 
 GLfloat vertices[][3] = {
@@ -25,6 +24,7 @@ GLfloat colors[][3] = {
 	{1.0, 0.0, 1.0},
 	{1.0, 1.0, 1.0}
 };
+
 
 void polygon(int a, int b, int c, int d, int color)
 {
