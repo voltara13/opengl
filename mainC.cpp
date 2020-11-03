@@ -108,7 +108,7 @@
 //{
 //	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
 //	glutInitWindowSize(Width, Height);
-//	glutCreateWindow("lw4");
+//	glutCreateWindow("lw4_camera");
 //	glutReshapeFunc(Reshape);
 //	glutDisplayFunc(Display);
 //	glutKeyboardFunc(processNormalKeys);

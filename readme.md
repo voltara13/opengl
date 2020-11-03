@@ -1,6 +1,10 @@
 # Лабораторные работы по компьютерной графике
 
-**Лабораторная работа №3**
-Реализовать перемещение по экрану маленького квадрата размером 5х5 пикселей путём перетаскивания мышкой, а также случайным образом при нажатии клавиши мыши. Цвет квадрата также меняется случайным образом.
+**Лабораторная работа №4**
+- Реализовать отображение куба в четырёх разных проекциях (ортогональной, диметрической, изометрической, перспективной).
+- Реализовать вращение камеры вокруг куба
 
-[![](https://github.com/voltara13/opengl/blob/lw2/scr1.png)](https://github.com/voltara13/opengl/blob/lw3/scr1.png)
+[![](https://github.com/voltara13/opengl/blob/lw4/scr1.png)](https://github.com/voltara13/opengl/blob/lw4/scr1.png)
+[![](https://github.com/voltara13/opengl/blob/lw4/scr2.png)](https://github.com/voltara13/opengl/blob/lw4/scr2.png)
+[![](https://github.com/voltara13/opengl/blob/lw4/scr3.png)](https://github.com/voltara13/opengl/blob/lw4/scr3.png)
+
