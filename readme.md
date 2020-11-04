@@ -1,10 +1,9 @@
 # Лабораторные работы по компьютерной графике
 
-**Лабораторная работа №4**
-- Реализовать отображение куба в четырёх разных проекциях (ортогональной, диметрической, изометрической, перспективной).
-- Реализовать вращение камеры вокруг куба
+**РГЗ №1**
+Простой "квадратный" фрактал - частный случай фракталов из многоугольников. Конечная картинка представляет собой
+совокупность квадратов с уменьшающимеся размерами. Центр каждого квадрата является вершиной какого-то квадрата.
+Основная задача состоит в том, чтобы избежать построения квадратов, чьими центрами являются вершиный квадратов лежащие внутри уже построеных квадратов.
 
-[![](https://github.com/voltara13/opengl/blob/lw4/scr1.png)](https://github.com/voltara13/opengl/blob/lw4/scr1.png)
-[![](https://github.com/voltara13/opengl/blob/lw4/scr2.png)](https://github.com/voltara13/opengl/blob/lw4/scr2.png)
-[![](https://github.com/voltara13/opengl/blob/lw4/scr3.png)](https://github.com/voltara13/opengl/blob/lw4/scr3.png)
+[![](https://github.com/voltara13/opengl/blob/rgz1/scr1.png)](https://github.com/voltara13/opengl/blob/rgz1/scr1.png)
 
