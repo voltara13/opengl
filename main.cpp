@@ -17,7 +17,7 @@ void Display(void)
 	glRasterPos2i(0, 0);
 	glPixelZoom(-1, -1);
 	glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
-	
+
 	glFinish();
 }
 
