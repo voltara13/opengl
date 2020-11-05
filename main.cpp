@@ -16,7 +16,6 @@ void Display(void)
 	unsigned char *data = stbi_load("cat.jpg", &width, &height, &nrChannels, 0);
 	glRasterPos2i(0, 0);
 	glPixelZoom(-1, -1);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
 	
 	glFinish();
