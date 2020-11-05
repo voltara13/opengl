@@ -3,8 +3,8 @@
 #include <GL/glut.h>
 
 
-GLint Width = 800, Height = 800;
-int num = 6;
+GLint Width = 400, Height = 400;
+const int num = 6;
 
 void Cube(double x, double y, double size)
 {
