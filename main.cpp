@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include "stb_image.h"
 
-GLint Width = 400, Height = 400;
+GLint Width = 600, Height = 600;
 
 
 void Display(void)
@@ -12,16 +12,15 @@ void Display(void)
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	int width = 200, height = 200, nrChannels = 255;
+	int width, height, nrChannels;
 	unsigned char *data = stbi_load("cat.jpg", &width, &height, &nrChannels, 0);
 	glRasterPos3d(0.0, 0.0, 0.0);
 	glPixelZoom(1, 1);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glDrawPixels(width, height,GL_RGB, GL_UNSIGNED_BYTE, data);
+	glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
 	static GLuint texName;
 	glGenTextures(1, &texName);
 	glBindTexture(GL_TEXTURE_2D, texName);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
 		width,
 		height,
@@ -34,10 +33,10 @@ void Display(void)
 
 	glBindTexture(GL_TEXTURE_2D, texName);
 	glBegin(GL_QUADS);
-	glTexCoord2d(0, 0); glVertex3d(-5, -5, -0.1);
-	glTexCoord2d(0, 1); glVertex3d(-5, 5, -0.1);
-	glTexCoord2d(1, 1); glVertex3d(5, 5, -0.1);
-	glTexCoord2d(1, 0); glVertex3d(5, -5, -0.1);
+	glTexCoord2d(1, 1); glVertex2d(-5, -5);
+	glTexCoord2d(1, 0); glVertex2d(-5, 5);
+	glTexCoord2d(0, 0); glVertex2d(5, 5);
+	glTexCoord2d(0, 1); glVertex2d(5, -5);
 	glEnd();
 
 	glDisable(GL_TEXTURE_2D);
