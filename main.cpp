@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include "stb_image.h"
 
-GLint Width = 600, Height = 600;
+GLint Width = 400, Height = 400;
 
 
 void Display(void)
@@ -17,7 +17,6 @@ void Display(void)
 	glRasterPos3d(0.0, 0.0, 0.0);
 	glPixelZoom(1, 1);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
 	static GLuint texName;
 	glGenTextures(1, &texName);
 	glBindTexture(GL_TEXTURE_2D, texName);
