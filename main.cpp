@@ -18,7 +18,7 @@ void Cube(double x, double y, double size)
 }
 
 
-void Draw(int n, double x = 0, double y = 0, double size = double(Width / 4), int vertex = 0) /* рекурсивно */
+void Draw(int n, double x = 0, double y = 0, double size = double(Width / 4), int vertex = 0)
 {
 	int drawNum = n;
 	if (!drawNum) return;
