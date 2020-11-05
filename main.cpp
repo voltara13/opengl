@@ -14,32 +14,10 @@ void Display(void)
 
 	int width, height, nrChannels;
 	unsigned char *data = stbi_load("cat.jpg", &width, &height, &nrChannels, 0);
-	glRasterPos3d(0.0, 0.0, 0.0);
+	glRasterPos2i(1, 1);
 	glPixelZoom(1, 1);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	static GLuint texName;
-	glGenTextures(1, &texName);
-	glBindTexture(GL_TEXTURE_2D, texName);
-	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
-		width,
-		height,
-		GL_RGB, GL_UNSIGNED_BYTE,
-		data);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glEnable(GL_TEXTURE_2D);
-	glColor3d(1, 1, 1);
-
-	glBindTexture(GL_TEXTURE_2D, texName);
-	glBegin(GL_QUADS);
-	glTexCoord2d(1, 1); glVertex2d(-5, -5);
-	glTexCoord2d(1, 0); glVertex2d(-5, 5);
-	glTexCoord2d(0, 0); glVertex2d(5, 5);
-	glTexCoord2d(0, 1); glVertex2d(5, -5);
-	glEnd();
-
-	glDisable(GL_TEXTURE_2D);
-
+	glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
+	
 	glFinish();
 }
 
