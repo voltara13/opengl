@@ -21,21 +21,6 @@
 //
 //void polygon(int a, int b, int c, int d)
 //{
-//	int width, height, nrChannels;
-//	unsigned char *data = stbi_load("cat.jpg", &width, &height, &nrChannels, 0);
-//	glRasterPos3d(0.0, 0.0, 0.0);
-//	glPixelZoom(1, 1);
-//	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-//	static GLuint texName;
-//	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
-//		width,
-//		height,
-//		GL_RGB, GL_UNSIGNED_BYTE,
-//		data);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-//	glColor3d(1, 1, 1);
-//	//glBindTexture(GL_TEXTURE_2D, texName);
 //	glBegin(GL_POLYGON);
 //	glTexCoord2d(1, 1); glVertex3fv(vertices[a]);
 //	glTexCoord2d(1, 0); glVertex3fv(vertices[b]);
@@ -108,6 +93,14 @@
 //	glEnable(GL_TEXTURE_2D);
 //	float ambient[] = { 0.7, 0.7, 0.7, 1 };
 //	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
+//	int width, height, nrChannels;
+//	unsigned char *data = stbi_load("cat.jpg", &width, &height, &nrChannels, 0);
+//	static GLuint texName;
+//	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
+//		width,
+//		height,
+//		GL_RGB, GL_UNSIGNED_BYTE,
+//		data);
 //}
 //
 //
