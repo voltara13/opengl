@@ -95,7 +95,6 @@
 //	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
 //	int width, height, nrChannels;
 //	unsigned char *data = stbi_load("cat.jpg", &width, &height, &nrChannels, 0);
-//	static GLuint texName;
 //	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
 //		width,
 //		height,
