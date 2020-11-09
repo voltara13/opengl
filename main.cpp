@@ -9,7 +9,6 @@ GLint Width = 400, Height = 400;
 double angPhi = 0, angOm = 0;
 int width, height, nrChannels;
 unsigned char* data[2];
-GLuint texture[2];
 
 GLfloat vertices[][3] = {
 	{-1.0, -1.0, -1.0},
