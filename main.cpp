@@ -1,45 +1,72 @@
-#include <windows.h>
-#include <GL/glu.h>
 #include <GL/glut.h>
-#include "stb_image.h"
+#include <stdlib.h>
 
-GLint Width = 400, Height = 400;
-
-
-void Display(void)
+/*  Initialize material property, light source, lighting model,
+ *  and depth buffer.
+ */
+void init(void)
 {
-	GLint w = Width, h = Height;
-	glClearColor(0, 0, 0, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+    GLfloat mat_shininess[] = { 50.0 };
+    GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
 
-	int width, height, nrChannels;
-	unsigned char *data = stbi_load("cat.jpg", &width, &height, &nrChannels, 0);
-	glRasterPos2i(0, 0);
-	glPixelZoom(-1, -1);
-	glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glShadeModel(GL_SMOOTH);
 
-	glFinish();
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
 }
 
-
-void Reshape(GLint w, GLint h)
+void display(void)
 {
-	Width = w;
-	Height = h;
-	glViewport(0, 0, w, h);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluOrtho2D(-6, 6, -6, 6);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glColor3f(1.0, 0.0, 0.0);
+    glutSolidSphere(1.0, 20, 16);
+    glFlush();
 }
 
-
-int main(int argc, char *argv[])
+void reshape(int w, int h)
 {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGB);
-	glutInitWindowSize(Width, Height);
-	glutCreateWindow("lw5");
-	glutDisplayFunc(Display);
-	glutReshapeFunc(Reshape);
-	glutMainLoop();
+    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    if (w <= h)
+        glOrtho(-1.5, 1.5, -1.5 * (GLfloat)h / (GLfloat)w,
+            1.5 * (GLfloat)h / (GLfloat)w, -10.0, 10.0);
+    else
+        glOrtho(-1.5 * (GLfloat)w / (GLfloat)h,
+            1.5 * (GLfloat)w / (GLfloat)h, -1.5, 1.5, -10.0, 10.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+    case 27:
+        exit(0);
+        break;
+    }
+}
+
+int main(int argc, char **argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(500, 500);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow(argv[0]);
+    init();
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutKeyboardFunc(keyboard);
+    glutMainLoop();
+    return 0;
 }
