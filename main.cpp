@@ -1,132 +1,31 @@
-//#include <GL/glut.h>
-//#include <stdlib.h>
-//
-//void init(void) //Ѕела€ сфера: источник света - цветной
-//{
-//    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-//    GLfloat mat_shininess[] = { 50.0 };
-//    GLfloat global_ambient[] = { 0.1, 0.1, 0.3, 1.0 };
-//    glClearColor(0.0, 0.0, 0.0, 0.0);
-//    glShadeModel(GL_SMOOTH);
-//
-//    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-//    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-//	
-//
-//	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient); //‘оновое освещение
-//
-//    //GLfloat light_position[] = { 1.0, 1.0, 1.0, 1.0 }; //“очечное освещение
-//    //glLightfv(GL_LIGHT0, GL_POSITION, light_position); 
-//    //glLightfv(GL_LIGHT0, GL_AMBIENT, global_ambient);
-//
-//    //GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 }; //”даленное освещение
-//    //glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-//    //glLightfv(GL_LIGHT0, GL_AMBIENT, global_ambient);
-//
-//    //GLfloat light_position[] = { -2.0, 2.0, 1.0, 1.0 }; //ѕрожекторное освещение
-//    //GLfloat light_spot_direction[] = { -1.0, -2.0, -1.0, 1.0 };
-//    //glLightfv(GL_LIGHT0, GL_POSITION, light_position); 
-//    //glLightfv(GL_LIGHT0, GL_AMBIENT, global_ambient);
-//    //glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light_spot_direction);
-//    //glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 90);
-//
-//
-//    glEnable(GL_LIGHTING);
-//    glEnable(GL_LIGHT0);
-//    glEnable(GL_DEPTH_TEST);
-//    glEnable(GL_COLOR_MATERIAL);
-//}
-//
-////void init(void) //»сточник - белый свет: —войство материала - хром
-////{
-////	GLfloat mat_ambient[] = {0.25, 0.25, 0.25, 1.0};
-////	GLfloat mat_diffuse[] = {0.4, 0.4, 0.4, 1.0};
-////	GLfloat mat_specular[] = {0.774597, 0.774597, 0.774597, 1.0};
-////	GLfloat mat_shininess = 76.8;
-////	GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
-////
-////	glClearColor(0.0, 0.0, 0.0, 0.0);
-////	glShadeModel(GL_SMOOTH);
-////
-////	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-////	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-////	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-////	glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess);
-////	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-////
-////	glEnable(GL_LIGHTING);
-////	glEnable(GL_LIGHT0);
-////	glEnable(GL_DEPTH_TEST);
-////}
-//
-//void display(void)
-//{
-//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//	glutSolidSphere(1.0, 100, 16);
-//	glFlush();
-//}
-//
-//void reshape(int w, int h)
-//{
-//	glViewport(0, 0, static_cast<GLsizei>(w), static_cast<GLsizei>(h));
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//	if (w <= h)
-//		glOrtho(-1.5, 1.5, -1.5 * static_cast<GLfloat>(h) / static_cast<GLfloat>(w),
-//		        1.5 * static_cast<GLfloat>(h) / static_cast<GLfloat>(w), -10.0, 10.0);
-//	else
-//		glOrtho(-1.5 * static_cast<GLfloat>(w) / static_cast<GLfloat>(h),
-//		        1.5 * static_cast<GLfloat>(w) / static_cast<GLfloat>(h), -1.5, 1.5, -10.0, 10.0);
-//	glMatrixMode(GL_MODELVIEW);
-//	glLoadIdentity();
-//}
-//
-//void keyboard(unsigned char key, int x, int y)
-//{
-//	switch (key)
-//	{
-//	case 27:
-//		exit(0);
-//	}
-//}
-//
-//int main(int argc, char** argv)
-//{
-//	glutInit(&argc, argv);
-//	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
-//	glutInitWindowSize(500, 500);
-//	glutInitWindowPosition(100, 100);
-//	glutCreateWindow(argv[0]);
-//	init();
-//	glutDisplayFunc(display);
-//	glutReshapeFunc(reshape);
-//	glutKeyboardFunc(keyboard);
-//	glutMainLoop();
-//	return 0;
-//}
-
-
 #include <GL/glut.h>
-#include <stdlib.h>
-#include <iostream>
-#include <math.h>
+#include <cstdlib>
+#include <cmath>
 #include <vector>
 #define STB_IMAGE_IMPLEMENTATION  
 #include "stb_image.h"
 
-#define Rc 2
-#define H 5
+#define Rc 1  //составл€юща€ радиуса поверхности
+#define H 5 //высота поверхности
 
 int winSize = 400;
 int x_center = 0;
-int y_center = 0;
-int z_center = 0;
-float dh = 0.2;
-int dl = 5;
-bool wire = 1;
+int y_center = -1;
+int z_center = -10;
+int light_x = 10;
+int light_y = 10;
+int light_z = -40;
+float dh = 0.05;
+int dl = 1;
+bool wire_flag = 0;
+bool texture_flag = 0;
+bool light_flag = 0;
+bool material_flag = 1;
+bool projection_flag = 0;
 
 int width, height, nrChannels;
-unsigned char* texture;
+unsigned char* image;
+static GLuint texName;
 
 typedef struct _Vert {
 	float x;
@@ -137,34 +36,67 @@ typedef struct _Vert {
 void keyDisplay(unsigned char key, int x, int y)
 {
 	switch (key) {
-	case 'd':
-		//std::cout << "d pressed" << std::endl;
+		//перемещение фигуры:
+	case 'd':  //право
 		x_center++;
 		break;
-	case 'a':
+	case 'a':  //лево
 		x_center--;
 		break;
-	case 'w':
+	case 'w':  //верх
 		y_center++;
 		break;
-	case 's':
+	case 's':  //низ
 		y_center--;
 		break;
-	case '+':
+	case '+':  //+
 		z_center++;
 		break;
-	case '-':
+	case '-':  //-
 		z_center--;
 		break;
-	case '0':
-		wire = 0;
+		//перемещение освещени€:
+	case '6':  //право
+		light_x++;
 		break;
-	case '1':
-		wire = 1;
+	case '4':  //лево
+		light_x--;
 		break;
-	case 27:  //esc
+	case '8':  //верх
+		light_y++;
+		break;
+	case '5':  //низ
+		light_y--;
+		break;
+	case '*':  //+
+		light_z++;
+		break;
+	case '/':  //-
+		light_z--;
+		break;
+	case 'c':  //carcass Ч каркас / сплошна€ поверхность
+		wire_flag ? wire_flag = 0 : wire_flag = 1;
+		break;
+	case 'l':  //light Ч включение / выключение освещени€ и материала
+		if (light_flag) {
+			light_flag = 0;
+			glDisable(GL_LIGHTING);
+			glDisable(GL_LIGHT0);
+		}
+		else {
+			light_flag = 1;
+			glEnable(GL_LIGHTING);
+			glEnable(GL_LIGHT0);
+		}
+		break;
+	case 't':  //texture Ч включение / выключение текстуры
+		texture_flag ? texture_flag = 0 : texture_flag = 1;
+		break;
+	case 'p':  //projection Ч аксонометрическа€ / перспективна€ проекци€
+		projection_flag ? projection_flag = 0 : projection_flag = 1;
+		break;
+	case 27:  //esc Ч завершение работы программы
 		exit(0);
-		break;
 	default:
 		break;
 	}
@@ -172,121 +104,122 @@ void keyDisplay(unsigned char key, int x, int y)
 	glutPostRedisplay();
 }
 
-void light() {
-	/*
-	GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+void light()
+{
+	GLfloat light_ambient[] = { 0.7, 0.7, 0.7, 1.0 };
 	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
 	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat light_position[] = { 0.0, 3.0, 2.0, 0.0 };
+	GLfloat light_position[] = { light_x, light_y, light_z, 10.0 };
 	GLfloat global_ambient_light[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat local_view[] = { 0.0 };
 
-	GLfloat material_ambient[] = { 0.19125, 0.0735, 0.0225, 1.0 };
-	GLfloat material_diffuse[] = { 0.7038, 0.27048, 0.40828, 1.0 };
-	GLfloat material_specular[] = { 0.256777, 0.137622, 0.086014, 1.0 };
+	GLfloat material_ambient[] = { 0.1, 0.0, 0.0, 1.0 };
+	GLfloat material_diffuse[] = { 0.8, 0.5, 0.2, 1.0 };
+	GLfloat material_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glEnable(GL_DEPTH_TEST);
 	glShadeModel(GL_SMOOTH);
 
+	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+
 	//освещение:
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);  //источниксвета
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient_light);  //глобальноефоновоеосвещение
-	glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, local_view);  //
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);  //источник света
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient_light);
 
-	//свойстваматериала:
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_ambient);  //фонова€составл€юща€
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, material_diffuse);  //диффузорна€составл€юща€
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, material_specular);  //зеркальна€составл€юща€
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 12.8);  //резкостьбликов
-
-
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	*/
+	//свойства материала:
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_ambient);  //фонова€ составл€юща€
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, material_diffuse);  //диффузорна€ составл€юща€
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, material_specular);  //зеркальна€ составл€юща€
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 40);  //резкость бликов
 }
 
 void display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glColor3d(1, 0, 1);
+	glColor3d(0.1, 0.1, 0.1);
 	glLineWidth(1);
+
+	if (projection_flag) {
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glFrustum(-5, 5, -5, 5, 7, 40);
+		gluLookAt(0, 0.1, 1, 0, 0, 0, 0, 1, 0);
+		glMatrixMode(GL_MODELVIEW);
+	}
+	else {
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(-5, 5, -5, 5, -10, 20);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		gluLookAt(0, 0.1, 1, 0, 0, 0, 0, 1, 0);
+	}
 
 	light();
 
 	std::vector<Vert> vertices(4);
 
-	for (float h = -0.5; h <= 0.5; h += dh) {
-		for (int l = 0; l < 360; l += dl) {
+	float tex_width_vert = -0.5;
+	float tex_height_vert = 0;
+	float d_tex_width = dl / 360;
+	float d_tex_height = dh;
 
-			//R = Rc * (1 + abs(sin(2 * 3.14 * h + 0.5 * l)));
+	if (texture_flag) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, texName);
+	}
 
-			vertices[0].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * h + 0.5 * l))) * sin(l);
+	for (float h = -0.5; h <= 0.5; h += dh, tex_height_vert += d_tex_height) {
+		for (int l = 0; l < 360; l += dl, tex_width_vert += d_tex_width) {
+
+
+			vertices[0].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * h))) * sin(l);
 			vertices[0].y = y_center + H * h;
-			vertices[0].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * h + 0.5 * l))) * cos(l);
+			vertices[0].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * h))) * cos(l);
 
-			vertices[1].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * h + 0.5 * (l + dl)))) * sin(l + dl);
+			vertices[1].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * h))) * sin(l + dl);
 			vertices[1].y = y_center + H * h;
-			vertices[1].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * h + 0.5 * (l + dl)))) * cos(l + dl);
+			vertices[1].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * h))) * cos(l + dl);
 
-			vertices[2].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh) + 0.5 * (l + dl)))) * sin(l + dl);
+			vertices[2].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh)))) * sin(l + dl);
 			vertices[2].y = y_center + H * (h + dh);
-			vertices[2].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh) + 0.5 * (l + dl)))) * cos(l + dl);
+			vertices[2].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh)))) * cos(l + dl);
 
-			vertices[3].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh) + 0.5 * l))) * sin(l);
+			vertices[3].x = x_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh)))) * sin(l);
 			vertices[3].y = y_center + H * (h + dh);
-			vertices[3].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh) + 0.5 * l))) * cos(l);
+			vertices[3].z = z_center + Rc * (1 + abs(sin(2 * 3.14 * (h + dh)))) * cos(l);
 
-			if (wire) glBegin(GL_LINE_STRIP); else glBegin(GL_POLYGON); //GL_LINE_STRIP - каркас, GL_POLYGON - закрашенный
-			glVertex3d(vertices[0].x, vertices[0].y, vertices[0].z);
-			glVertex3d(vertices[1].x, vertices[1].y, vertices[1].z);
-			glVertex3d(vertices[2].x, vertices[2].y, vertices[2].z);
-			glVertex3d(vertices[3].x, vertices[3].y, vertices[3].z);
-			glEnd();
+			if (texture_flag) {
+
+				if (wire_flag) glBegin(GL_LINE_STRIP); else glBegin(GL_POLYGON); //GL_LINE_STRIP - каркас, GL_POLYGON - закрашенный
+				glVertex3d(vertices[0].x, vertices[0].y, vertices[0].z);
+				glTexCoord2d(tex_height_vert, tex_width_vert);
+				glVertex3d(vertices[1].x, vertices[1].y, vertices[1].z);
+				glTexCoord2d(tex_height_vert, tex_width_vert + d_tex_width);
+				glVertex3d(vertices[2].x, vertices[2].y, vertices[2].z);
+				glTexCoord2d(tex_height_vert + d_tex_height, tex_width_vert + d_tex_width);
+				glVertex3d(vertices[3].x, vertices[3].y, vertices[3].z);
+				glTexCoord2d(tex_height_vert + d_tex_height, tex_width_vert);
+				glEnd();
+
+			}
+			else {
+				if (wire_flag) glBegin(GL_LINE_STRIP); else glBegin(GL_POLYGON); //GL_LINE_STRIP - каркас, GL_POLYGON - закрашенный
+				glVertex3d(vertices[0].x, vertices[0].y, vertices[0].z);
+				glVertex3d(vertices[1].x, vertices[1].y, vertices[1].z);
+				glVertex3d(vertices[2].x, vertices[2].y, vertices[2].z);
+				glVertex3d(vertices[3].x, vertices[3].y, vertices[3].z);
+				glEnd();
+			}
 		}
 	}
 
+	if (texture_flag) glDisable(GL_TEXTURE_2D);
+
 	glFlush();
-}
-
-void init(void)
-{
-	GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
-	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat light_position[] = { 0.0, 3.0, 2.0, 0.0 };
-	GLfloat global_ambient_light[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat local_view[] = { 0.0 };
-
-	GLfloat ambient[] = { 0.19125, 0.0735, 0.0225, 1.0 };
-	GLfloat diffuse[] = { 0.7038, 0.27048, 0.40828, 1.0 };
-	GLfloat specular[] = { 0.256777, 0.137622, 0.086014, 1.0 };
-
-	glClearColor(0.0, 0.0, 0.0, 0.0);
-	glEnable(GL_DEPTH_TEST);
-	glShadeModel(GL_SMOOTH);
-
-	//освещение:
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);  //источниксвета
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient_light);  //глобальноефоновоеосвещение
-	glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, local_view);  //
-
-	//свойстваматериала:
-	glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);  //фонова€составл€юща€
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);  //диффузорна€составл€юща€
-	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);  //зеркальна€составл€юща€
-	glMaterialf(GL_FRONT, GL_SHININESS, 12.8);  //резкостьбликов
-
-
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-
 }
 
 void reshape(int w, int h)
@@ -294,10 +227,10 @@ void reshape(int w, int h)
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-5, 5, -5, 5, -5, 5);
+	glOrtho(-5, 5, -5, 5, -10, 10);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	//gluLookAt(1, 0.05, 0.5, 0, 0, 0, 0, 1, 0);
+	gluLookAt(0, 0.05, 1, 0, 0, 0, 0, 1, 0);
 }
 
 int main(int argc, char** argv)
@@ -306,13 +239,27 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(winSize, winSize);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("RGR_18_Sologubova");
-	init();
+	glutCreateWindow("rgz2");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyDisplay);
 
-	texture = stbi_load("texture.jpg", &width, &height, &nrChannels, 0);
+	image = stbi_load("texture1.jpg", &width, &height, &nrChannels, 4);
+
+	stbi_set_flip_vertically_on_load(true);
+
+	glGenTextures(1, &texName);
+	glBindTexture(GL_TEXTURE_2D, texName);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+
+	stbi_image_free(image);
 
 	glutMainLoop();
 	return 0;
