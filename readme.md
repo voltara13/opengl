@@ -23,5 +23,4 @@ f.	‘/’ – назад
 
 5.	Наложение текстуры из файла “texture1.jpg” осуществляется в функции display() и регулируется нажатием клавиши ‘t’. По умолчанию текстура выключена. 
 
-
 [![](https://github.com/voltara13/opengl/blob/rgz2/scr1.png)](https://github.com/voltara13/opengl/blob/rgz2/scr1.png)
