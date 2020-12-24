@@ -5,8 +5,8 @@
 #define STB_IMAGE_IMPLEMENTATION  
 #include "stb_image.h"
 
-#define Rc 1  //составл€юща€ радиуса поверхности
-#define H 5 //высота поверхности
+#define Rc 2  //составл€юща€ радиуса поверхности
+#define H 7 //высота поверхности
 
 int winSize = 400;
 int x_center = 0;
@@ -113,7 +113,7 @@ void light()
 	GLfloat global_ambient_light[] = { 1.0, 1.0, 1.0, 1.0 };
 
 	GLfloat material_ambient[] = { 0.1, 0.0, 0.0, 1.0 };
-	GLfloat material_diffuse[] = { 0.8, 0.5, 0.2, 1.0 };
+	GLfloat material_diffuse[] = { 0.3, 0.4, 0.7, 1.0 };
 	GLfloat material_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 
 	glClearColor(0.0, 0.0, 0.0, 0.0);
